@@ -1,0 +1,55 @@
+/** @type {import('tailwindcss').Config} */
+export default {
+  content: ['./index.html', './src/**/*.{js,ts,jsx,tsx}'],
+  theme: {
+    extend: {
+      fontFamily: {
+        display: ['Manrope', 'system-ui', 'sans-serif'],
+        sans: ['Inter', 'system-ui', 'sans-serif'],
+        mono: ['JetBrains Mono', 'ui-monospace', 'monospace'],
+      },
+      colors: {
+        navy: {
+          50: '#eef2f7',
+          100: '#d4dde8',
+          200: '#a9bcd1',
+          300: '#6e8ba8',
+          400: '#3d5e7e',
+          500: '#1e3a56',
+          600: '#122a42',
+          700: '#0d2236',
+          800: '#091a2b',
+          900: '#071a2b',
+          950: '#04101c',
+        },
+        ocean: {
+          50: '#e8f1f8',
+          100: '#cfe0ef',
+          200: '#9fc1df',
+          300: '#5e9bc9',
+          400: '#2e7ab0',
+          500: '#1268a5',
+          600: '#0e5688',
+          700: '#0a426b',
+          800: '#083154',
+          900: '#062540',
+        },
+        teal: {
+          50: '#e6f5f4',
+          100: '#c4e8e6',
+          200: '#88d1cd',
+          300: '#4dbbb4',
+          400: '#3aa6a0',
+          500: '#2d8b86',
+          600: '#23706c',
+          700: '#1a5653',
+          800: '#143d3a',
+          900: '#0e2a28',
+        },
+        paper: '#f7f6f3',
+        warm: '#f9f8f5',
+      },
+    },
+  },
+  plugins: [],
+};

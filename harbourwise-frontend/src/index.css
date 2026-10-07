@@ -1,0 +1,63 @@
+@import url('https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;500;600;700;800&family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ===== Wave keyframes ===== */
+@keyframes waveMoveA {
+  from { transform: translateX(0); }
+  to { transform: translateX(-50%); }
+}
+@keyframes waveMoveB {
+  from { transform: translateX(-12%); }
+  to { transform: translateX(-62%); }
+}
+@keyframes waveMoveC {
+  from { transform: translateX(-25%); }
+  to { transform: translateX(-75%); }
+}
+
+/* ===== Ship ===== */
+@keyframes shipSail {
+  from { transform: translateX(-80px); }
+  to { transform: translateX(calc(100vw + 80px)); }
+}
+@keyframes shipBob {
+  0%, 100% { transform: translateY(-1px) rotate(-1deg); }
+  20% { transform: translateY(-4px) rotate(0.5deg); }
+  40% { transform: translateY(-2px) rotate(1.2deg); }
+  60% { transform: translateY(-3px) rotate(0.6deg); }
+  80% { transform: translateY(-1px) rotate(-0.4deg); }
+}
+
+@keyframes foamPulse {
+  0%, 100% { opacity: 0.15; }
+  50% { opacity: 0.5; }
+}
+
+/* ===== Chart entrance ===== */
+@keyframes drawLine {
+  from { stroke-dashoffset: 200; }
+  to { stroke-dashoffset: 0; }
+}
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+/* ===== Reduced motion ===== */
+@media (prefers-reduced-motion: reduce) {
+  .wave-anim, .ship-anim, .ship-bob-anim, .foam-anim, .chart-draw {
+    animation: none !important;
+  }
+  .ship-anim { transform: translateX(20%) !important; }
+  .ship-bob-anim { transform: translateY(0) rotate(0) !important; }
+  .foam-anim { opacity: 0.2 !important; }
+}
+
+/* ===== Scrollbar ===== */
+.scroll-thin::-webkit-scrollbar { width: 4px; }
+.scroll-thin::-webkit-scrollbar-track { background: transparent; }
+.scroll-thin::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 99px; }
+.scroll-thin::-webkit-scrollbar-thumb:hover { background: #94a3b8; }
