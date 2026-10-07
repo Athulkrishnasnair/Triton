@@ -11,13 +11,15 @@ auth_bp = Blueprint(
 
 @auth_bp.route("/register", methods=["POST"])
 def register():
-    data = request.get_json()
+    data = request.get_json(silent=True)
 
     # Validate request body
     if not data:
         return jsonify({
             "error": "Request body is required"
         }), 400
+    if not isinstance(data, dict):
+        return jsonify({"error": "Request body must be a JSON object"}), 400
 
     # Get the info of users
     username = data.get('username')
@@ -66,7 +68,7 @@ def register():
 # Login route
 @auth_bp.route('/login', methods=["POST"])
 def login():
-     data = request.get_json()
+     data = request.get_json(silent=True)
 
      
      
@@ -74,6 +76,10 @@ def login():
      if not data:
           return jsonify({
                "error": "Request body is required"
+          }), 400
+     if not isinstance(data, dict):
+          return jsonify({
+               "error": "Request body must be a JSON object"
           }), 400
 
      password = data.get("password")
@@ -96,8 +102,6 @@ def login():
     #  Store the user session 
      session["user_id"] = user.id
 
-     print("LOGIN SESSION:", dict(session))
-
     # Sucess
      return jsonify({
           "message": "Login successful",
@@ -112,12 +116,8 @@ def login():
 @auth_bp.route("/me", methods=["GET"])
 def get_current_user():
 
-     # print("SESSION: ", dict(session))
-
      # Retrive session id
      user_id = session.get("user_id")
-     print("ME SESSION:", dict(session))
-
      if not user_id:
           return jsonify({
                "error": "Not authenticated"
@@ -125,6 +125,11 @@ def get_current_user():
 
      # Get user details
      user = db.session.get(User, user_id)
+     if not user:
+          session.pop("user_id", None)
+          return jsonify({
+               "error": "Not authenticated"
+          }), 401
 
      return jsonify({
           "id": user.id,
