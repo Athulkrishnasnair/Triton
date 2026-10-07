@@ -1,0 +1,38 @@
+{
+  "manifest_version": 3,
+  "name": "Kirchlen",
+  "version": "0.1.0",
+  "description": "AI tutor that teaches alongside educational videos.",
+
+  "permissions": [
+    "storage",
+    "activeTab"
+  ],
+
+  "host_permissions": [
+    "http://localhost:5000/*"
+  ],
+
+  "background": {
+    "service_worker": "src/background/background.js"
+  },
+
+  "content_scripts": [
+    {
+      "matches": [
+        "https://www.youtube.com/*"
+      ],
+      "js": [
+        "src/content/content.js"
+      ],
+      "css": [
+        "src/overlay/overlay.css"
+      ],
+      "run_at": "document_idle"
+    }
+  ],
+
+  "action": {
+    "default_title": "Kirchlen"
+  }
+}
